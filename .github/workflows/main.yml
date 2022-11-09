@@ -1,0 +1,29 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Push Docker Image
+      # You may pin to the exact commit or the version.
+      # uses: julioarruda/pushimagetoregistry@3679a680bb9d6cbf3c1de8aeed592faf1e140c8b
+      uses: julioarruda/pushimagetoregistry@v1
+      with:
+        # Username Name with push permission
+        acr-tokenname: luklukls
+        # Token/PWD with push permission
+        acr-token: $DOCKER_TOKEN
+        # Docker Account Name
+        acr-account: luklukls
+        # Docker Image Name
+        acr-imagename: aws-helm
