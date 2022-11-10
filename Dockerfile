@@ -13,4 +13,4 @@ FROM alpine:latest
 
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
-apk add --no-cache aws-cli
+RUN apk add --no-cache aws-cli
