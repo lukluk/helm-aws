@@ -17,4 +17,4 @@ FROM alpine:latest
 
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
-COPY --from=installer aws /usr/local/bin/aws
+COPY --from=installer /usr/local/bin/aws /usr/local/bin/aws
