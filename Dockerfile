@@ -9,12 +9,8 @@ RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/s
 RUN chmod 700 get_helm.sh
 RUN ./get_helm.sh
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-RUN unzip awscliv2.zip
-RUN ./aws/install
-
 FROM alpine:latest
 
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
-COPY --from=installer /usr/local/bin/aws /usr/local/bin/aws
+apk add --no-cache aws-cli
