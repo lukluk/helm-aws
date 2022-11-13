@@ -2,7 +2,7 @@ FROM ubuntu:latest as installer
 RUN apt-get -y update && apt-get -y install curl git openssl build-essential
 RUN apt-get install curl
 RUN apt-get install unzip
-RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl 
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubectl
 RUN chmod a+x kubectl
 
 RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
