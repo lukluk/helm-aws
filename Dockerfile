@@ -7,7 +7,7 @@ RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.0/b
 RUN chmod a+x kubectl
 RUN wget https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.9.4-linux-amd64.tar.gz
-RUN sudo mv linux-amd64/helm /usr/local/bin/helm
+RUN mv linux-amd64/helm /usr/local/bin/helm
 
 FROM alpine:latest
 
