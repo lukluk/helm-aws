@@ -8,14 +8,13 @@ RUN chmod a+x kubectl
 RUN wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin/helm
-RUN apk add --no-cache python3 py3-pip \
-    && pip3 install --upgrade pip \
-    && pip3 install --no-cache-dir awscli \
-    && rm -rf /var/cache/apk/*
 
 FROM alpine:latest
 
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
-COPY --from=installer aws /usr/local/bin/aws
+RUN apk add --no-cache python3 py3-pip \
+    && pip3 install --upgrade pip \
+    && pip3 install --no-cache-dir awscli \
+    && rm -rf /var/cache/apk/*
 
