@@ -5,7 +5,7 @@ RUN apt-get install unzip
 RUN apt-get install wget
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/v1.23.0/bin/linux/amd64/kubectl
 RUN chmod a+x kubectl
-RUN wget https://get.helm.sh/helm-v3.9.4-linux-amd64.tar.gz
+RUN wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.9.4-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin/helm
 
