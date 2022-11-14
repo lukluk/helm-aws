@@ -10,6 +10,7 @@ RUN tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin/helm
 
 FROM alpine:latest
+RUN apk add curl
 COPY deployer /usr/local/bin/deployer
 COPY push /usr/local/bin/push
 COPY notify /usr/local/bin/notify
