@@ -1,0 +1,6 @@
+#!/bin/sh
+export BUILDID=$(cat buildid.txt)
+export IMAGE="$AWS_ACCOUNT.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$BITBUCKET_REPO_SLUG"
+aws eks update-kubeconfig --region $AWS_DEFAULT_REGION --name $CLUSTER
+aws ecr get-login-password --region $AWS_DEFAULT_REGION | helm registry login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
+helm upgrade --namespace $NAMESPACE --install --set image.repository=$IMAGE --set image.tag=$BUILDID $BITBUCKET_REPO_SLUG $APP_CHART
