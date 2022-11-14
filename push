@@ -1,5 +1,5 @@
 #!/bin/sh
-eval $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
 export AWS_REGISTRY_URL="$AWS_ACCOUNT.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$BITBUCKET_REPO_SLUG"
 export BUILD_ID="$BITBUCKET_BRANCH-$BITBUCKET_COMMIT-$BITBUCKET_BUILD_NUMBER"
 docker build -t ${AWS_REGISTRY_URL}:$BUILD_ID .
