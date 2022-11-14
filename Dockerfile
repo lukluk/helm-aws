@@ -12,10 +12,12 @@ RUN mv linux-amd64/helm /usr/local/bin/helm
 FROM alpine:latest
 COPY deployer /usr/local/bin/deployer
 COPY push /usr/local/bin/push
+COPY notify /usr/local/bin/notify
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/deployer
 RUN chmod +x /usr/local/bin/push
+RUN chmod +x /usr/local/bin/notify
 RUN apk add --no-cache python3 py3-pip \
     && pip3 install --upgrade pip \
     && pip3 install --no-cache-dir awscli \
