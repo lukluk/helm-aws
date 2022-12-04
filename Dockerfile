@@ -31,3 +31,5 @@ RUN set -x && \
     apk add --virtual build_deps $BUILD_DEPS &&  \
     cp /usr/bin/envsubst /usr/local/bin/envsubst && \
     apk del build_deps
+RUN apk add --no-cache vault libcap && \
+    setcap cap_ipc_lock= /usr/sbin/vault
