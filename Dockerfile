@@ -10,6 +10,7 @@ RUN tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin/helm
 
 FROM alpine:latest
+RUN apk update
 RUN apk add curl
 COPY deployer /usr/local/bin/deployer
 COPY push /usr/local/bin/push
@@ -33,3 +34,4 @@ RUN set -x && \
     apk del build_deps
 RUN apk add --no-cache vault libcap && \
     setcap cap_ipc_lock= /usr/sbin/vault
+RUN sudo apk add jq
