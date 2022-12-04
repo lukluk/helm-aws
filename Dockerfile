@@ -35,3 +35,4 @@ RUN set -x && \
 RUN apk add --no-cache vault libcap && \
     setcap cap_ipc_lock= /usr/sbin/vault
 RUN apk add jq
+RUN apk add bash
