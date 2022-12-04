@@ -34,4 +34,4 @@ RUN set -x && \
     apk del build_deps
 RUN apk add --no-cache vault libcap && \
     setcap cap_ipc_lock= /usr/sbin/vault
-RUN sudo apk add jq
+RUN apk add jq
