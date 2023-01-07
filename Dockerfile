@@ -12,14 +12,8 @@ RUN mv linux-amd64/helm /usr/local/bin/helm
 FROM alpine:latest
 RUN apk update
 RUN apk add curl
-COPY deployer /usr/local/bin/deployer
-COPY push /usr/local/bin/push
-COPY notify /usr/local/bin/notify
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
-RUN chmod +x /usr/local/bin/deployer
-RUN chmod +x /usr/local/bin/push
-RUN chmod +x /usr/local/bin/notify
 RUN apk add --no-cache python3 py3-pip \
     && pip3 install --upgrade pip \
     && pip3 install --no-cache-dir awscli \
@@ -35,4 +29,12 @@ RUN set -x && \
 RUN apk add --no-cache vault libcap && \
     setcap cap_ipc_lock= /usr/sbin/vault
 RUN apk add jq
+ENV BUILD_DEPS="gettext"  \
+    RUNTIME_DEPS="libintl"
+
+RUN set -x && \
+    apk add --update $RUNTIME_DEPS && \
+    apk add --virtual build_deps $BUILD_DEPS &&  \
+    cp /usr/bin/envsubst /usr/local/bin/envsubst && \
+    apk del build_deps
 RUN apk add bash
