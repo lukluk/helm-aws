@@ -1,2 +1,2 @@
 Dimas samuel
-R IMAM okay
+R Imam oktriyanto
