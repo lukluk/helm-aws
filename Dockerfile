@@ -12,6 +12,8 @@ RUN mv linux-amd64/helm /usr/local/bin/helm
 FROM alpine:latest
 RUN apk update
 RUN apk add curl
+RUN apk add postgresql-client
+RUN apk add --update coreutils
 COPY --from=installer kubectl /usr/local/bin/kubectl
 COPY --from=installer /usr/local/bin/helm /usr/local/bin/helm
 RUN apk add --no-cache python3 py3-pip \
