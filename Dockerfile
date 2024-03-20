@@ -37,4 +37,6 @@ RUN set -x && \
     apk add --virtual build_deps $BUILD_DEPS &&  \
     cp /usr/bin/envsubst /usr/local/bin/envsubst && \
     apk del build_deps
+RUN apk add postgresql-client
+RUN apk add --update coreutils && rm -rf /var/cache/apk/*
 RUN apk add bash
