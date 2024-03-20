@@ -9,7 +9,7 @@ RUN wget https://get.helm.sh/helm-v3.10.2-linux-amd64.tar.gz
 RUN tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
 RUN mv linux-amd64/helm /usr/local/bin/helm
 
-FROM alpine:latest
+FROM alpine:3.16.3
 RUN apk update
 RUN apk add curl
 COPY --from=installer kubectl /usr/local/bin/kubectl
